@@ -7,12 +7,12 @@
 
 ---
 
-**Sawaal Jawab** is a FastAPI based RAG (Retrieval-Augmented Generation) application that brings you face-to-face with your favorite personalities, allowing you to engage in captivating conversations and ask them anything you desire. Powered by [Groq](https://groq.com/) and advanced RAG techniques, this project aims to adapt the personality's information from a provided URL, creating a dynamic and immersive Q&A experience.
+**Sawaal Jawab** is a [Llama Index](https://www.llamaindex.ai/) and FastAPI based RAG (Retrieval-Augmented Generation) application that brings you face-to-face with your favorite personalities, allowing you to engage in captivating conversations and ask them anything you desire. Powered by [Groq](https://groq.com/) as LLM and advanced RAG techniques achieved with [Llama Index](https://www.llamaindex.ai/), this project aims to adapt the personality's information from a provided URL, creating a dynamic and immersive Q&A experience.
 
 ## Features
 
 - **Personality Adaptation:** Sawal Jawab seamlessly adapts to any personality's information provided via a URL, allowing you to interact with a wide range of famous individuals, from celebrities to thought leaders.
-- **Advanced RAG Techniques:** Using techniques like Hybrid Search, colBERT Reranking, Query Expansion to retreive the most relevant context.   
+- **Advanced RAG Techniques:** Using techniques like Hybrid Search, colBERT Reranking, Query Expansion to retreive the most relevant context achieved with the help of [Llama Index](https://www.llamaindex.ai/)   
 - **Interactive Q&A:** Engage in real-time conversations powered by [Groq](https://groq.com/) with your favorite personalities, asking them questions and receiving thoughtful and personalized responses.
 
 ## TODO
