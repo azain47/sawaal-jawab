@@ -26,11 +26,11 @@
 ![Chat 2](./assets/chat2.png)
 *Ex 2: Arthur Morgan from RDR2*
 
-<img src = './assets/mobi2.jpeg' height = '300' alt='Mobile UI'/>
+<img src = './assets/mobi2.jpeg' height = '500' alt='Mobile UI'/>
 
 *Mobile Preview*
 
-<img src = './assets/mobi1.jpeg' height = '300' alt='Mobile UI'/>
+<img src = './assets/mobi1.jpeg' height = '500' alt='Mobile UI'/>
 
 *Mobile Preview*
 
