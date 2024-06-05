@@ -14,13 +14,14 @@ from exceptions import (
 from typing import Callable
 
 from models import(
+    Personalities,
     RAGResponse,
     Query,
     Document
 )
 
 app = FastAPI(title='Chai Pe Charcha')
-ragApp = RAGapp(collection_name='new_personality')
+ragApp = RAGapp()
 
 def create_exception_handler(
     status_code: int, initial_detail: str
@@ -92,23 +93,40 @@ async def get_Response(query: Query) -> RAGResponse:
     if query.query == '':
         raise InvalidDataError(message="No query provided, please provide a query.")
     else:
-        groq_response = await ragApp.getResponse(query=query.query)
+        groq_response = await ragApp.getResponse(query=query.query, model=query.model)
         if groq_response.errors == 'groq': 
             raise GroqAPIError(message=groq_response.message)
         if groq_response.errors == 'qdrant':
             raise QdrantError(message=groq_response.message) 
         if groq_response.errors == 'rerank':
-            raise 
+            raise ReRankerError()
     return RAGResponse(message=groq_response.message)
 
-@app.put('/api/add_docs/')
-async def add_Document(doc:Document)->RAGResponse:
-    if doc.url == '':
+@app.put('/api/add_person/')
+async def add_Personality(data:Document)->RAGResponse:
+    if data.url == '':
         raise InvalidDataError(message='No URL provided. Try again.')
+    elif data.name == '':
+        raise InvalidDataError(message='No name for the person provided. Try again.')
+    
     else:
-        response = await ragApp.addToVectorStore(doc.url)
+        response = await ragApp.addToVectorStore(data.url, data.name)
         if response.errors=='parse':
             raise ParseError()
         if response.errors=='ollama':
             raise OllamaError()
         return RAGResponse(message = response.message)
+    
+@app.get('/api/get_persons/')
+async def get_personalities()->Personalities:
+    return await ragApp.getPersons()
+
+@app.post('/api/load_personality/')
+async def load_Personality(data:Document) ->RAGResponse:
+    if data.url == '':
+        raise InvalidDataError(message='No URL provided. Try again.')
+    else:
+        response = await ragApp.loadVectorStore(data.url)
+        if response.errors == 'qdrant':
+            raise QdrantError(message='Personality not found.') 
+        return response
